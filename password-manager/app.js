@@ -1,17 +1,37 @@
 'use strict';
-
 console.log('starting password manager');
 
 var storage = require('node-persist');
 storage.initSync();
 
-// storage.setItemSync('name', 'Andrew');
-// var accounts = storage.getItemSync('accounts');
-var accounts = [{username:'cookie', balance:0}];
-var accounts = [ { username: 'Andrew', balance: 0 },
-  { username: 'Jen', balance: 75 } ];
-console.log('Saved accounts  are: ' + accounts);
-// accounts.push({username:'cookie', balance:0})
-// storage.setItemSync('accounts', accounts );
+function createAccount(account) {
+  var accounts = storage.getItemSync('accounts');
 
-console.log(accounts);
+  if (typeof accounts ==='undefined'){
+    accounts = [];
+  }
+  accounts.push(account);
+  storage.setItemSync('accounts', accounts);
+  return account;
+}
+
+function getAccount(accountName) {
+  var accounts = storage.getItemSync('accounts');
+  var matchedAccount;
+
+  accounts.forEach(function(account){
+    if (account.name === accountName) {
+      matchedAccount = account;
+    }
+  });
+  return matchedAccount;
+}
+
+// createAccount({
+//   name: 'Facebook',
+//   username: 'someemail@gmail.com',
+//   password: 'Password123!'
+// });
+
+var facebookAccount = getAccount('Facebook');
+console.log(facebookAccount);
