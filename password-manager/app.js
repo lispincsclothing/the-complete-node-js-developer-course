@@ -106,21 +106,29 @@ function getAccount(accountName, masterPassword) {
 
 switch (command) {
   case 'create':
-    var createdAccount = createAccount({
-      name: argv.name,
-      username: argv.username,
-      password: argv.password
-    }, argv.masterPassword);
-    console.log('Account created');
-    console.log(createdAccount);
+    try {
+      var createdAccount = createAccount({
+        name: argv.name,
+        username: argv.username,
+        password: argv.password
+      }, argv.masterPassword);
+      console.log('Account created');
+      console.log(createdAccount);
+    } catch (e) {
+      console.log('Account not created, error: ' + e);
+    }
     break;
   case 'get':
-    var fetchedAccount = getAccount(argv.name, argv.masterPassword);
-    if (typeof fetchedAccount === 'undefined') {
-      console.log('Account not found');
-    } else {
-      console.log('Account found');
-      console.log(fetchedAccount);
+    try {
+      var fetchedAccount = getAccount(argv.name, argv.masterPassword);
+      if (typeof fetchedAccount === 'undefined') {
+        console.log('Account not found');
+      } else {
+        console.log('Account found');
+        console.log(fetchedAccount);
+      }
+    } catch (e) {
+      console.log('Unable to fetch account, error: ' + e);
     }
     break;
   default:
