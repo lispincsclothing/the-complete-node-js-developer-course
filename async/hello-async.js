@@ -6,7 +6,7 @@
 // }, 1000);
 // console.log('2');
 
-console.log('Challenge');
+console.log('Challenge:');
 function printInTwoSeconds(message){
   setTimeout(function () {
     console.log(message);
