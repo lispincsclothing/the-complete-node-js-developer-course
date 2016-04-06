@@ -12,5 +12,8 @@
     "babel-eslint": "^6.0.2",
     "eslint": "^2.7.0",
     "eslint-plugin-react": "^4.2.3"
+  },
+  "dependencies": {
+    "express": "^4.13.2"
   }
 }
