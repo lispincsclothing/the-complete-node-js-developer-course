@@ -13,20 +13,22 @@ var argv = require('yargs')
 
 if (typeof argv.l === 'string' && argv.l.length >0) {
   console.log('Location was provided');
-  weather(argv.l, function (currentWeather) {
-    console.log(currentWeather);
+  weather(argv.l).then(
+    function(currentWeather) {
+      console.log(currentWeather);
+    }
+  ).catch(function (error) {
+    console.log(error);
   });
 }
 else {
   console.log('Location was not provided');
-  location(function (location) {
-    if (location) {
-      console.log('Able to determine location from ipinfo');
-      weather(location.city, function (currentWeather) {
-        console.log(currentWeather);
-      });
-    } else {
-      console.log('Unable to guess location');
-    }
+
+  location().then(function (loc) {
+    return weather(loc.city);
+  }).then(function (currentWeather) {
+    console.log(currentWeather);
+  }).catch(function (error) {
+    console.log(error);
   });
 }
