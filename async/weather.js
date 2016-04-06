@@ -4,7 +4,7 @@ module.exports = function (location) {
   return new Promise(function(resolve, reject) {
       var encodedLocation = encodeURIComponent(location);
 
-      var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodedLocation + '&units=imperial&appid=239fe7b91b52663184a96317f945d01e'
+      var url = 'http://api.openweathermap.org/data/2.5/weather?q=' + encodedLocation + '&units=imperial&appid=DELETED
 
       if (!location) {
           return reject('No location provided');
