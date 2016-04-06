@@ -1,13 +1,13 @@
 var express = require('express');
 var app = express();
-
-app.get('/', function (req, res) {
-  res.send('Hello Express');
-});
-
+const PORT = 3000;
 
 app.get('/about', function (req, res) {
   res.send('about us');
 });
 
-app.listen(3000);
+app.use(express.static(__dirname + '/public'));
+
+app.listen(PORT, function () {
+  console.log('Server started at port ' + PORT + '!');
+});
