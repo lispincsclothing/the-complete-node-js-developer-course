@@ -4,7 +4,8 @@
   "description": "",
   "main": "hello-async.js",
   "dependencies": {
-    "request": "^2.60.0"
+    "request": "^2.60.0",
+    "yargs": "^3.15.0"
   },
   "devDependencies": {},
   "scripts": {

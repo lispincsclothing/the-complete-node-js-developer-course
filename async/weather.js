@@ -1,7 +1,14 @@
 var request = require('request');
-var url = 'http://api.openweathermap.org/data/2.5/weather?zip=90210,us&units=imperial&appid=239fe7b91b52663184a96317f945d01e'
 
-module.exports = function (callback) {
+module.exports = function (location, callback) {
+  var encodedLocation = encodeURIComponent(location);
+
+  var url = 'http://api.openweathermap.org/data/2.5/weather?q='+ encodedLocation + '&units=imperial&appid=APPID'
+
+  if (!location) {
+    return callback('No location provided');
+  }
+
   request({
     url: url,
     json: true
